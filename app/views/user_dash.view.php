@@ -2,7 +2,7 @@
 <link rel="stylesheet" type="text/css" href="public/css/user_dash.css">
 <div style="float:left">
         <div class=" p-3 my-3 ">
-        <h2><li><span><a href="#">Users</a>/<a href="#">Requests </a></span></li></h2>
+        <h2><span><a href="#" style="text-decoration:underline;" >Users</a>/<a href="reqDash">Requests </a></span></h2>
             <table class='table table-light table-striped' id='data' >
                 <thead class='thead-dark'>
                     <tr class='head'>

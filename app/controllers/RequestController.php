@@ -14,4 +14,17 @@ class RequestController
          App::get("requestQuery")->addRequest($_SESSION['email'],'writer request');
          return redirect('profile');
    }
+   public function getRequests(){
+      session_start();
+        $requests=App::get("requestQuery")->selectAll('requests');
+
+        return view('request_dash',compact('requests'));
+  }
+  public function reqLoad(){
+   session_start();
+     $requests=App::get("requestQuery")->selectAll('requests');
+
+     return view('request_dash',compact('requests'));
 }
+}
+
