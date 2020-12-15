@@ -1,9 +1,8 @@
 <?php require 'partials/head.php'; ?>
-
-<div class="container">
-  <div class="row">
-    <div class="col-3">
-    <h2>Users</h2>
+<link rel="stylesheet" type="text/css" href="public/css/user_dash.css">
+<div style="float:left">
+        <div class=" p-3 my-3 ">
+        <h2><li><span><a href="#">Users</a>/<a href="#">Requests </a></span></li></h2>
             <table class='table table-light table-striped' id='data' >
                 <thead class='thead-dark'>
                     <tr class='head'>
@@ -14,59 +13,33 @@
                         <th scope='col'>More </th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody id='tb'>
                     <?php foreach ($users as $user) : ?>
 
                         <tr scope='row' class="user">           
-                              <td><?php echo ucfirst($user->email); ?></td>
-                              <td><?php echo ucfirst($user->password); ?></td>
-                              <td><?php echo ucfirst($user->role); ?></td>
-                              <td><?php echo ucfirst($user->verified); ?></td>
-                              <td><a id='<?php echo $user->id?>' href="<?php echo $user->email?>"><p style="font-size:30px;color:red;">&#9998;</p></a></td>
-                      </tr>
-                      
-                  <?php endforeach; ?>
-              </tbody>
-          </table>
-    </div>
-    <div class="col-3">
-    <h2>Users</h2>
-            <table class='table table-light table-striped' id='data' >
-                <thead class='thead-dark'>
-                    <tr class='head'>
-                        <th scope='col'>Email </th>
-                        <th scope='col'>Password </th>
-                        <th scope='col'>Role </th>
-                        <th scope='col'>Verified </th>
-                        <th scope='col'>More </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php foreach ($users as $user) : ?>
+                                <td><?php echo ucfirst($user->email); ?></td>
+                                <td><?php echo ucfirst($user->password); ?></td>
+                                <td><?php echo ucfirst($user->role); ?></td>
+                                <td><?php echo ucfirst($user->verified); ?></td>
+                                <td><a id='<?php echo $user->id?>' href="<?php echo $user->email?>"><p style="font-size:30px;color:red;">&#9998;</p></a></td>
+                        </tr>
+                        
+                    <?php endforeach; ?>
+                </tbody>
 
-                        <tr scope='row' class="user">           
-                              <td><?php echo ucfirst($user->email); ?></td>
-                              <td><?php echo ucfirst($user->password); ?></td>
-                              <td><?php echo ucfirst($user->role); ?></td>
-                              <td><?php echo ucfirst($user->verified); ?></td>
-                              <td><a id='<?php echo $user->id?>' href="<?php echo $user->email?>"><p style="font-size:30px;color:red;">&#9998;</p></a></td>
-                      </tr>
-                      
-                  <?php endforeach; ?>
-              </tbody>
-          </table>
+            </table>
+            <div id='pag'>
+      
     </div>
-  </div>
-  <div class="row">
-    <div class="col">
-      1 of 3
-    </div>
-    <div class="col">
-      2 of 3
-    </div>
-    <div class="col">
-      3 of 3
-    </div>
-  </div>
+
 </div>
+</div>
+<div class="container p-3 my-3  text-white">
+
+</div>
+<div class="container p-3 my-3  text-white">
+
+</div>
+
+
 <?php require('partials/footer.php'); ?>
