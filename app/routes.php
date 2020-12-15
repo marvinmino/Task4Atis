@@ -19,3 +19,4 @@ $router->get('error','BlogController@error@loggedIn@');
 $router->get('profile','UsersController@profile@notLoggedIn@');
 $router->get('makewriter','RequestController@admin@notLoggedIn@');
 $router->get('reqDash','RequestController@getRequests@notLoggedIn@isAdmin');
+$router->get('request','RequestController@reqLoad@notLoggedIn@isAdmin');
