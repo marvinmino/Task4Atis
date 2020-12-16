@@ -90,4 +90,8 @@ class UsersController
         $user=App::get("userQuery")->findUser('email',$_SESSION['email'])[0];
         return view('profile',compact('user'));
     }
+    public function acceptWriter(){
+        $user=App::get("userQuery")->update('users','role','writer','id',$this->userRequest->reqData('id'));
+        return redirect('dashboard');
+    }
 }

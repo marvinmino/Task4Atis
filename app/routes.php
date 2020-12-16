@@ -20,3 +20,7 @@ $router->get('profile','UsersController@profile@notLoggedIn@');
 $router->get('makewriter','RequestController@admin@notLoggedIn@');
 $router->get('reqDash','RequestController@getRequests@notLoggedIn@isAdmin');
 $router->get('request','RequestController@reqLoad@notLoggedIn@isAdmin');
+$router->get('requestHandler','RequestController@requestHandler@notLoggedIn@isAdmin');
+$router->get('acceptwriter','UsersController@acceptWriter@notLoggedIn@isAdmin');
+$router->get('test','BlogController@test@@');
+$router->get('post','BlogController@post@@');

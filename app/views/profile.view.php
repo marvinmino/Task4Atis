@@ -25,7 +25,7 @@
                         <?php 
                         if($user->role=='admin')
                         echo "<a href='dashboard' >Go to admin dashboard</a>";
-                        else 
+                        else if($user->role=='reader')
                         echo "<a href='makewriter' >Request to be a writer</a>";
                         ?>
                      <div class="row">

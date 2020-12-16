@@ -85,6 +85,7 @@ return array(
     'SendGrid\\Test\\LicenceYearTest' => $vendorDir . '/sendgrid/php-http-client/test/unit/LicenceYearTest.php',
     'SendGrid\\Test\\MockClient' => $vendorDir . '/sendgrid/php-http-client/test/unit/MockClient.php',
     'SendGrid\\Test\\ResponseTest' => $vendorDir . '/sendgrid/php-http-client/test/unit/ResponseTest.php',
+    'Slug' => $baseDir . '/core/Slug.php',
     'TaskRequest' => $baseDir . '/core/Requests/TaskRequest.php',
     'TwilioEmail' => $vendorDir . '/sendgrid/sendgrid/lib/TwilioEmail.php',
     'User' => $baseDir . '/app/models/User.php',

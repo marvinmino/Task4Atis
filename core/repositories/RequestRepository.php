@@ -11,7 +11,7 @@ class RequestRepository extends RepositoryBuilder
     {
         $this->pdo = $pdo;
     }
-    public function addRequest($email, $type)
+    public function addRequest($email, $type,$text)
      {   
         $user=$this->selectAllOneCon('users','email',$email)[0];
         
@@ -22,8 +22,7 @@ class RequestRepository extends RepositoryBuilder
         $this->insert('requests', [
             'id_user'   =>     $user->id,
             'type'      =>     $type,
-            'text'     =>     "User {$email} has requested for a {$type}",
+            'text'     =>      $text,
         ]);
     }
-   
 }

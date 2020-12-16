@@ -130,6 +130,7 @@ class ComposerStaticInit7c8f0a8154fcdea89657ac618ee8ac86
         'SendGrid\\Test\\LicenceYearTest' => __DIR__ . '/..' . '/sendgrid/php-http-client/test/unit/LicenceYearTest.php',
         'SendGrid\\Test\\MockClient' => __DIR__ . '/..' . '/sendgrid/php-http-client/test/unit/MockClient.php',
         'SendGrid\\Test\\ResponseTest' => __DIR__ . '/..' . '/sendgrid/php-http-client/test/unit/ResponseTest.php',
+        'Slug' => __DIR__ . '/../..' . '/core/Slug.php',
         'TaskRequest' => __DIR__ . '/../..' . '/core/Requests/TaskRequest.php',
         'TwilioEmail' => __DIR__ . '/..' . '/sendgrid/sendgrid/lib/TwilioEmail.php',
         'User' => __DIR__ . '/../..' . '/app/models/User.php',

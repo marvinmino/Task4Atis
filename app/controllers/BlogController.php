@@ -43,4 +43,10 @@ class BlogController
     public function error(){
         echo "You're not allowed to access this site";
     }
+    public function test(){
+        return view('createArticle');
+    }
+    public function post(){
+        return vire('post');
+    }
 }
