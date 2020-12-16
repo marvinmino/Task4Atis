@@ -10,6 +10,8 @@ tinymce.init({
 </script>
 <form action="articlesave" method="post">
 <input type="text" placeholder="title">
+<input type="text" placeholder="title">
+<input type="text" placeholder="title">
 <textarea id="default">Hello, World!</textarea>
 </form>
 <?php require('partials/footer.php'); ?>

@@ -22,4 +22,12 @@ class AdminMiddleware
             return false;
         }
     }
+    public function isWriter(){
+        if ($_SESSION['user_role'] =="reader"){
+            header("Location: /error");
+            return true;
+        } else {
+            return false;
+        }  
+    }
 }

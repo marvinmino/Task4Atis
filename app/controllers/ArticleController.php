@@ -3,51 +3,31 @@
 namespace App\Controllers;
 
 use App\Core\App;
-use TaskRequest;
+use ArticleRequest;
+use Slug;
 class ArticleController 
 {
-    private $taskRequest;
+    private $articleRequest;
     
     public function __construct($request)
     {
-        $this->taskRequest = new TaskRequest($request);
+        $this->articleRequest = new ArticleRequest($request);
     }
 
     public function home(){
         return view('articles');
     }
-    public function resetPass(){
-        $API_KEY=App::get('key');
-        $email = new Mail(); 
-        $email->setFrom("gamer.fear69@gmail.com", "Gamer Fear");
-        $email->setSubject("Sending with SendGrid is Fun");
-        $email->addTo("marvinmino1@gmail.com", "marvinmino");
-        $email->addContent("text/plain", "and easy to do anywhere, even with PHP");
-        $email->addContent(
-            "text/html", "<strong>and easy to do anywhere, even with PHP</strong>"
-        );
-        $sendgrid = new SendGrid($API_KEY);
-        try {
-            $response = $sendgrid->send($email);
-            print $response->statusCode() . "\n";
-            print_r($response->headers());
-            print $response->body() . "\n";
-        } catch (Exception $e) {
-            echo 'Caught exception: '. $e->getMessage() ."\n";
-        }
-    }
+
     
     public function save()
     {
         session_start();
-        $this->taskRequest->taskAuth();
+        $this->taskRequest->ArticleAuth();
         if(empty($_SESSION['error']))
-            App::get('taskQuery')->insertTask(
-                    $this->taskRequest->reqData('taskName'),
-                    $this->taskRequest->reqData('taskDescription'),
-                    $this->taskRequest->reqData('taskPriority'),
-                    $this->taskRequest->reqData('taskDeadline'),
-                    $_SESSION['email'] );
+            App::get('ArticleQuery')->insertTask(
+                    $this->taskRequest->reqData('title'),
+                    $this->taskRequest->reqData('description'),
+                    $this->taskRequest->reqData('content'));
         else
         return redirect('home');
     }

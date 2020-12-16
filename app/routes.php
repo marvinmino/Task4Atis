@@ -24,3 +24,4 @@ $router->get('requestHandler','RequestController@requestHandler@notLoggedIn@isAd
 $router->get('acceptwriter','UsersController@acceptWriter@notLoggedIn@isAdmin');
 $router->get('test','BlogController@test@@');
 $router->get('post','BlogController@post@@');
+$router->post('articlesave','ArticleController@save@loggedIn@isWriter');

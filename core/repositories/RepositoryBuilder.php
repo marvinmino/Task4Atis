@@ -29,8 +29,8 @@ class RepositoryBuilder
      * @param string $table
      */
     public function selectAll($table)
-    {
-        $statement = $this->pdo->prepare("select * from {$table}");
+    {   $sql="select * from {$table}";
+        $statement = $this->pdo->prepare($sql);
 
         $statement->execute();
 
@@ -45,22 +45,25 @@ class RepositoryBuilder
         return $statement->fetchAll(PDO::FETCH_CLASS);
     }
     public function selectAllOneCon($table, $conData, $con)
-    {
-        $statement = $this->pdo->prepare("SELECT * FROM " . $table . " where " . $conData . "='" . $con . "'");
-
+    {   $sql="SELECT * FROM " . $table . " where " . $conData . "=:con";
+        $statement = $this->pdo->prepare($sql);
+        $statement->bindParam(':con', $con);
         $statement->execute();
         return $statement->fetchAll(PDO::FETCH_CLASS);
     }
     public function selectSortAllOneCon($table, $conData, $con,$sort)
     {
-        $statement = $this->pdo->prepare("SELECT * FROM " . $table . " where " . $conData . "='" . $con . "'order by {$sort} asc");
-
+        $statement = $this->pdo->prepare("SELECT * FROM " . $table . " where " . $conData . "=:con order by :sort asc");
+        $statement->bindParam(':con', $con);
+        $statement->bindParam(':con', $sort);
         $statement->execute();
         return $statement->fetchAll(PDO::FETCH_CLASS);
     }
     public function selectAllTwoCon($table, $conData, $con, $conData1, $con1)
     {
-        $statement = $this->pdo->prepare("SELECT * FROM " . $table . " where " . $conData . "='" . $con . "' and " . $conData1 . "='" . $con1 . "'");
+        $statement = $this->pdo->prepare("SELECT * FROM " . $table . " where " . $conData . "=:con and " . $conData1 . "=:con1");
+        $statement->bindParam(':con', $con);
+        $statement->bindParam(':con1', $con1);
         $statement->execute();
         return $statement->fetchAll(PDO::FETCH_CLASS);
     }
@@ -89,8 +92,10 @@ class RepositoryBuilder
     }
     public function update($table, $element, $elementValue, $condition ,$conditionValue)
     {
-        $sql = "update {$table} set {$element}='{$elementValue}' where {$condition}='{$conditionValue}'";
-        //  die(var_dump($sql));
+        $sql = "update {$table} set {$element}=':elementValue where {$condition}=:conditionValue";
+        $statement->bindParam(':elementValue', $elementValue);
+        $statement->bindParam(':conditionValue', $conditionValue);
+
         try {
             $statement = $this->pdo->prepare($sql);
 
@@ -101,8 +106,8 @@ class RepositoryBuilder
     }
     public function delete($table,$condition ,$conditionValue)
     {
-        $sql = "delete from {$table}  where {$condition}='{$conditionValue}'";
-  
+        $sql = "delete from {$table}  where {$condition}=:conditionValue";
+        $statement->bindParam(':conditionValue', $conditionValue);
         try {
             $statement = $this->pdo->prepare($sql);
 
