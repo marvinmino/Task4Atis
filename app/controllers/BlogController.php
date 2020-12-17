@@ -49,6 +49,7 @@ class BlogController
         echo "You're not allowed to access this site";
     }
     public function test(){
+        session_start();
         return view('createArticle');
     }
     public function post(){

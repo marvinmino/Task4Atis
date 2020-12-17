@@ -33,6 +33,7 @@ return array(
     'EllipticCurve\\PublicKey' => $vendorDir . '/starkbank/ecdsa/src/publickey.php',
     'EllipticCurve\\Signature' => $vendorDir . '/starkbank/ecdsa/src/signature.php',
     'EllipticCurve\\Utils\\File' => $vendorDir . '/starkbank/ecdsa/src/utils/file.php',
+    'Image' => $baseDir . '/Image.php',
     'RequestRequest' => $baseDir . '/core/Requests/RequestRequest.php',
     'Requests' => $baseDir . '/app/models/Request.php',
     'SendGrid' => $vendorDir . '/sendgrid/sendgrid/lib/SendGrid.php',

@@ -38,7 +38,7 @@ class ArticleController
             );
         }
         else
-        return redirect('home');
+        return redirect('test');
     }
     public function sort()
     {

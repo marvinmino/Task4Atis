@@ -6,7 +6,8 @@
 tinymce.init({
   selector: 'textarea#default',
   plugins: "textcolor",
-  toolbar: "forecolor backcolor"
+  menubar: false,
+  toolbar: "undo redo | styleselect | forecolor | bold italic | alignleft aligncenter alignright alignjustify | outdent indent"
 });
 
 </script>
@@ -18,10 +19,11 @@ if (isset($_SESSION['error'])) {
   ?><div class="alert alert-danger"><?php echo $_SESSION['error']; ?></div>
       <?php unset($_SESSION['error']);
     }  ?>
-<form action="articlesave" method="post" class="">
-<input type="text" class="form-control" placeholder="title" name="title">
-<input type="text" class="form-control" placeholder="description" name="description">
-<textarea id="default" class="form-control" placeholder="content" name="content"></textarea>
+<form action="articlesave" method="post" enctype="multipart/form-data">
+<input type="text" class="form-control" placeholder="Title" name="title">
+<input type="text" class="form-control" placeholder="Description" name="description">
+<input class="form-control" type="file" name="fileToUpload" id="fileToUpload">
+<textarea id="default" class="form-control" placeholder="Content" name="content" style="height:600px"></textarea>
 <input style="float:left"type="submit" class="btn btn-primary btn-lg btn-block" value="Post" name='frm'>
 </form>
 
