@@ -23,9 +23,9 @@ class RequestController
     public function getRequests()
     {
         session_start();
-        $requests=App::get("requestQuery")->selectAll('requests');
+        $userRequests=App::get("requestQuery")->merge('users','requests','id','id_user','0','0');
 
-        return view('request_dash', compact('requests'));
+        return view('request_dash', compact('userRequests'));
     }
     public function reqLoad()
     {
