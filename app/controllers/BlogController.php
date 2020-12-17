@@ -1,11 +1,16 @@
 <?php
 
 namespace App\Controllers;
-
+use BlogRequest;
 use App\Core\App;
 class BlogController 
 {
-
+    private $request;
+   
+    public function __construct($request)
+    {
+        $this->request = new BlogRequest($request);
+    }
     public function home(){
         session_start();
         return view('index');
@@ -47,6 +52,9 @@ class BlogController
         return view('createArticle');
     }
     public function post(){
-        return vire('post');
+        $article=App::get('articleQuery')->selectAllOneCon('article','slug',$this->request->reqData('slug'))[0];
+        return view('post',compact('article'));
     }
+
+
 }

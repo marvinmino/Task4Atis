@@ -23,5 +23,6 @@ $router->get('request','RequestController@reqLoad@notLoggedIn@isAdmin');
 $router->get('requestHandler','RequestController@requestHandler@notLoggedIn@isAdmin');
 $router->get('acceptwriter','UsersController@acceptWriter@notLoggedIn@isAdmin');
 $router->get('test','BlogController@test@@');
-$router->get('post','BlogController@post@@');
-$router->post('articlesave','ArticleController@save@loggedIn@isWriter');
+$router->get("post",'BlogController@post@@');
+// $router->get("post/{name}",'BlogController@post@@');
+$router->post('articlesave','ArticleController@save@notLoggedIn@isWriter');

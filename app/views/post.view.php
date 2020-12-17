@@ -1,16 +1,10 @@
 <?php require 'partials/head.php'; ?>
-<script src="https://cdn.tiny.cloud/1/cyosdq7ivz0h2uicnhnkky2no8viq93lj7e370rc4w500rro/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+<h2><?php echo $article->title?></h2>
 
-<script>
+<div class="container p-3 my-3  text-white" style="background-color:rgba(0, 0, 0, 0.5);border-radius:1.2%;">
+<div><?php echo $article->content?></div>
+</div>
+<div class="container p-3 my-3  text-white">
 
-tinymce.init({
-  selector: 'textarea#default'
-});
-
-</script>
-<form action="articlesave" method="post">
-<input type="text" placeholder="title" name='title'>
-<input type="text" placeholder="description" name="description">
-<textarea id="default">Hello, World!</textarea>
-</form>
+</div>
 <?php require('partials/footer.php'); ?>

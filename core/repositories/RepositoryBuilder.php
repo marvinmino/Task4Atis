@@ -100,13 +100,12 @@ class RepositoryBuilder
     }
     public function update($table, $element, $elementValue, $condition ,$conditionValue)
     {
-        $sql = "update {$table} set {$element}=':elementValue where {$condition}=:conditionValue";
-        $statement->bindParam(':elementValue', $elementValue);
-        $statement->bindParam(':conditionValue', $conditionValue);
-
+        $sql = "update {$table} set {$element}=:elementValue where {$condition}=:conditionValue";
+        
         try {
             $statement = $this->pdo->prepare($sql);
-
+            $statement->bindParam(':elementValue', $elementValue);
+            $statement->bindParam(':conditionValue', $conditionValue);
             $statement->execute();
         } catch (\Exception $e) {
             //

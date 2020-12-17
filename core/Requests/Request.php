@@ -23,6 +23,13 @@ class Request
             parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH), '/'
         );
     }
+    public static function setUri()
+    {
+       $_SERVER['REQUEST_URI']="/post";
+       return trim(
+        parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH), '/'
+    );
+    }
 
     /**
      * Fetch the request method.

@@ -32,28 +32,28 @@
       }
     </style>
     <!-- Custom styles for this template -->
-    <link href="public/css/style.css" rel="stylesheet">
+    <link href="../public/css/style.css" rel="stylesheet">
   </head>
   <body class="text-center" style=' background-image: url("https://wallpapercave.com/wp/wp4368683.jpg");background-size: cover;
   
   background-position: center;'>
-  <script src="public/js/main.js"></script>
+  <script src="../public/js/main.js"></script>
     <div class=" d-flex w-100 h-100 p-3 mx-auto flex-column">
   <header class="masthead mb-auto">
     <div class="inner">
       <h3 class="masthead-brand">Gamer Fear</h3>
       <nav class="nav nav-masthead justify-content-center">
-        <a class="nav-link active" href="home">Home</a>
+        <a class="nav-link active" href="../home">Home</a>
         <a class="nav-link" href="#">Categories</a>
-        <a class="nav-link" href="articles">All Articles</a>
+        <a class="nav-link" href="../articles">All Articles</a>
         <?php
 
     if (isset($_SESSION['email'])) {
-      echo '<a class="nav-link" href="profile" >Profile</a>';
-        echo '<a class="nav-link" href="logout" >Logout</a>';
+      echo '<a class="nav-link" href="../profile" >Profile</a>';
+        echo '<a class="nav-link" href="../logout" >Logout</a>';
     }
     else
-    echo '<a class="nav-link" href="login" >Login</a>';
+    echo '<a class="nav-link" href="../login" >Login</a>';
     ?>
 
       </nav>

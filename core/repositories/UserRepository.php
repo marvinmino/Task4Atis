@@ -37,22 +37,22 @@ class UserRepository extends RepositoryBuilder
             $_SESSION['error'] = "No email/password combination exists";
             return redirect('login');
         } else {
-            if (isset($remember)) {
-                //COOKIES for username
-                setcookie("email", $email, time() + (10 * 365 * 24 * 60 * 60));
-                //COOKIES for password
-                setcookie("password", $password, time() + (10 * 365 * 24 * 60 * 60));
-            } else {
-                if (isset($_COOKIE["email"])) {
-                    setcookie("email", "");
-                    if (isset($_COOKIE["password"])) {
-                        setcookie("password", "");
-                    }
-                }
-            }
+            // if (isset($remember)) {
+            //     //COOKIES for username
+            //     setcookie("email", $email, time() + (10 * 365 * 24 * 60 * 60));
+            //     //COOKIES for password
+            //     setcookie("password", $password, time() + (10 * 365 * 24 * 60 * 60));
+            // } else {
+            //     if (isset($_COOKIE["email"])) {
+            //         setcookie("email", "");
+            //         if (isset($_COOKIE["password"])) {
+            //             setcookie("password", "");
+            //         }
+            //     }
+            // }
             $_SESSION['email'] = $email;
             $_SESSION['user_role']=$user->role;
-           
+            $_SESSION["uid"]=$user->id;
             return redirect('home');
         }
     }
