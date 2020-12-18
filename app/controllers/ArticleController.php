@@ -35,6 +35,8 @@ class ArticleController
                 $this->articleRequest->reqData('description'),
                 $this->articleRequest->reqData('content'),
                 $user,
+                $this->articleRequest->reqData('date'),
+                $this->articleRequest->reqData('category'),
             );
         }
         else

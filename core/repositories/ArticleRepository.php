@@ -10,7 +10,7 @@ class ArticleRepository extends RepositoryBuilder{
     {
         $this->pdo = $pdo;
     }
-    public function insertArticle($title,$slug,$description,$content,$userId)
+    public function insertArticle($title,$slug,$description,$content,$userId,$date,$category)
     {
         // die(var_dump($_SESSION['path']));
             $this->insert('article', [
@@ -19,8 +19,9 @@ class ArticleRepository extends RepositoryBuilder{
                 'description' => $description,
                 'content'     => $content,
                 'userId'      => $userId,
-                'category'    => 'joe',
-                'thumbnail'   => "nope",
+                'date'        => $date,
+                'category'    => $category,
+                'thumbnail'   => $_SESSION['thumbnail'],
                 'image'       => $_SESSION["path"],
                 ]);
         return redirect('test');
@@ -30,15 +31,15 @@ class ArticleRepository extends RepositoryBuilder{
     {    $i=0;
         foreach ($args as $id) {
             $i++;
-            $this->update('Articles', 'token', $i, 'id', $id);
+            $this->update('article', 'token', $i, 'id', $id);
         }
     }
     public function updateArticle($id,$name,$description,$priority,$deadline)
     {       
-            $this->update('Articles','name',$name,'id',$id);
-            $this->update('Articles','description',$description,'id',$id);
-            $this->update('Articles','priority',$priority,'id',$id);
-            $this->update('Articles','deadline',$deadline,'id',$id);
+            $this->update('article','name',$name,'id',$id);
+            $this->update('article','description',$description,'id',$id);
+            $this->update('article','priority',$priority,'id',$id);
+            $this->update('article','deadline',$deadline,'id',$id);
         return redirect('home');
     
     }

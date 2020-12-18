@@ -7,10 +7,10 @@
 					<div class="col-lg-12 text-right p-2">
 						<i class="fa fa-list" aria-hidden="true"></i>
 					</div>
-					<div class="col-lg-12 card-img text-center p-2">
+					<!-- <div class="col-lg-12 card-img text-center p-2">
 						<img  src="https://images.alphacoders.com/937/thumb-350-937101.png" class="rounded-circle">
                         <div class="badge badge-pill badge-danger p-12"><a href="changeProfile">New +</a></div>
-                    </div>
+                    </div> -->
                     
 					<div class="col-lg-12 text-center card-detail pt-3 pb-5">
                     <?php 
@@ -42,13 +42,6 @@
 			</div>
 		</div>
 	</div>
-<!-- <div style="align-self:center ">
-    <div class='card' style="background-color:rgba(0, 0, 0, 0.5);border-radius:1.2%; height:800px;width:400px;">
-    <img src="https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__340.jpg" alt="" srcset="" class="img-thumbnail">
-    <br>
-    
-    <p><?php //echo $user->email?></p>
-    </div>
-</div> -->
+
 
 <?php require('partials/footer.php'); ?>

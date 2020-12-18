@@ -22,7 +22,7 @@ class UsersController
             $this->userRequest->reqData('password1')
         );
         $this->userRequest->verifyMail(App::get('key'), App::get('userQuery')->selectAllOneCon('users','email',$this->userRequest->reqData('email'))[0]);
-        return redirect('home');
+        return redirect('login');
         }    
      
     public function login()

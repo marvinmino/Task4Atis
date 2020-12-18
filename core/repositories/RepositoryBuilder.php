@@ -114,10 +114,10 @@ class RepositoryBuilder
     public function delete($table,$condition ,$conditionValue)
     {
         $sql = "delete from {$table}  where {$condition}=:conditionValue";
-        $statement->bindParam(':conditionValue', $conditionValue);
+        
         try {
             $statement = $this->pdo->prepare($sql);
-
+            $statement->bindParam(':conditionValue', $conditionValue);
             $statement->execute();
         } catch (\Exception $e) {
             //

@@ -49,10 +49,11 @@ class BlogController
         echo "You're not allowed to access this site";
     }
     public function test(){
-        session_start();
-        return view('createArticle');
+       $categories= App::get('categoryQuery')->selectAll('category');
+        return view('createArticle',compact('categories'));
     }
     public function post(){
+        session_start();
         $article=App::get('articleQuery')->selectAllOneCon('article','slug',$this->request->reqData('slug'))[0];
         return view('post',compact('article'));
     }

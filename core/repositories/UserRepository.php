@@ -22,8 +22,6 @@ class UserRepository extends RepositoryBuilder
                 'password'  => md5($password),
                 'token'     =>     $token,
             ]);
-            session_start();
-            $_SESSION['email'] = $email;
         } else {
             session_start();
             $_SESSION['error'] = "User with the same email already exists";

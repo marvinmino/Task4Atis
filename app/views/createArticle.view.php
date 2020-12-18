@@ -20,11 +20,25 @@ if (isset($_SESSION['error'])) {
       <?php unset($_SESSION['error']);
     }  ?>
 <form action="articlesave" method="post" enctype="multipart/form-data">
+<input style="float:left"type="submit" class="btn btn-danger btn-lg btn-block" value="Create Article" name='frm'>
 <input type="text" class="form-control" placeholder="Title" name="title">
 <input type="text" class="form-control" placeholder="Description" name="description">
+<label for="fileToUpload" style="float:left">Article Main Image:</label>
 <input class="form-control" type="file" name="fileToUpload" id="fileToUpload">
+<label for="category" style="float:left">Category Select:</label>
+<select name="category" class="form-control" placeholder="select">
+  <?php foreach($categories as $category):?>
+    <option value="<?php echo $category->name?>"><?php echo $category->name?></option>
+    <?php endforeach?>
+</select>
+<label for="date" style="float:left">Article Publish Date::</label>
+<input type="date" name="date" class="form-control">
+<label for="content" style="float:left">Article Content:</label>
+<hr>
+
+
 <textarea id="default" class="form-control" placeholder="Content" name="content" style="height:600px"></textarea>
-<input style="float:left"type="submit" class="btn btn-primary btn-lg btn-block" value="Post" name='frm'>
+
 </form>
 
 </div>
