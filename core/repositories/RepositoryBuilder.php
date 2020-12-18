@@ -91,10 +91,9 @@ class RepositoryBuilder
         }
     }
     public function merge($table1,$table2,$join1,$join2,$con,$conval){
-        $statement = $this->pdo->prepare("SELECT *,r.id as rid from {$table1} as u INNER JOIN {$table2} as r ON u.{$join1}=r.{$join2} WHERE {$con}=':conval'");
+        $statement = $this->pdo->prepare("SELECT * from {$table1} as u INNER JOIN {$table2} as r ON u.{$join1}=r.{$join2} WHERE {$con}=:conval");
         
         $statement->bindParam(':conval', $conval);
-        // die(var_dump($statement));
         $statement->execute();
         return $statement->fetchAll(PDO::FETCH_CLASS);
     }

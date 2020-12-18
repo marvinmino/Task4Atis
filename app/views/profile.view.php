@@ -26,12 +26,14 @@
                         if($user->role=='admin')
                        {
                            echo "<a href='dashboard' >Go to admin dashboard</a><br>";
-                           echo "<a href='create' >Create Article</a>";
+                           echo "<a href='create' >Create Article</a><br>";
+                           echo "<a href='myarticles' >My articles</a>";
                        }
                         else if($user->role=='reader')
                         echo "<a href='makewriter' >Request to be a writer</a>";
                         else if( $user->role=='writer')
-                        echo "<a href='create' >Create Article</a>";
+                        {echo "<a href='create' >Create Article</a><br>";
+                            echo "<a href='myarticles' >My articles</a>";}
                         ?>
                      <div class="row">
                           <div class="col-sm-12 text-center">

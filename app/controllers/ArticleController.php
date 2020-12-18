@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Controllers;
-
 use App\Core\App;
 use ArticleRequest;
 use Slug;
@@ -31,7 +30,7 @@ class ArticleController
         if (empty($_SESSION['error'])) {
             $slug=Slug::slugify($this->articleRequest->reqData('title'));
             // die(var_dump($slug));
-            App::get('articleQuery')->insertArticle(
+            if(App::get('articleQuery')->insertArticle(
                 $this->articleRequest->reqData('title'),
                 $slug,
                 $this->articleRequest->reqData('description'),
@@ -39,7 +38,11 @@ class ArticleController
                 $user,
                 $this->articleRequest->reqData('date'),
                 $this->articleRequest->reqData('category'),
-            );
+            ))
+            {
+                ///shto article id dhe te requestet coje userin te artikulli/
+                App::get('requestQuery')->addRequest($_SESSION['email'],'post request',$slug);
+            }
             return redirect('post/'.$slug);
         }
         else
@@ -91,5 +94,10 @@ class ArticleController
 
         App::get('ArticleQuery')->delete('article','id',$this->ArticleRequest->reqData('deleteArticle'));
         return redirect('home');
+    }
+    public function myArticles(){
+        session_start();
+        $articles=App::get("articleQuery")->merge('users','article','id','userId','email',$_SESSION['email']);
+        return view('myarticles',compact('articles'));
     }
 }

@@ -14,6 +14,7 @@ class ArticleRepository extends RepositoryBuilder{
     {    
         if (!empty($this->selectAllOneCon('article', 'slug', $slug))) {
             $_SESSION['error']="Article with the same title already exists";
+            return false;
         }
         else
             $this->insert('article', [
@@ -27,7 +28,7 @@ class ArticleRepository extends RepositoryBuilder{
                 'thumbnail'   => $_SESSION['thumbnail'],
                 'image'       => $_SESSION["path"],
                 ]);
-        
+        return true;
         
     }
     public function sort($args)

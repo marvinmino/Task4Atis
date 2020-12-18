@@ -55,7 +55,11 @@ class BlogController
     public function post(){
         session_start();
         $article=App::get('articleQuery')->selectAllOneCon('article','slug',$this->request->reqData('slug'))[0];
+        $user=App::get('articleQuery')->selectAllOneCon('users','email',$_SESSION['email'])[0];
+        if($article->status=="okay"||$_SESSION['user_role']=="admin"||$user->id==$article->userId)
         return view('post',compact('article'));
+        else
+        return redirect('../home');
     }
 
 

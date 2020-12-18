@@ -10,6 +10,7 @@ $router->post('login', 'UsersController@login@loggedIn@');
 $router->get('logout', 'BlogController@logout@@');
 $router->get('verify','UsersController@verify@@');
 $router->get('articles','ArticleController@home@@');
+$router->get('myarticles','ArticleController@myArticles@notLoggedIn@isWriter');
 $router->get('forgot','BlogController@forgotPassword@loggedIn@');
 $router->post('forgot','UsersController@forgot@loggedIn@');
 $router->get('reset','UsersController@resetLink@loggedIn@');

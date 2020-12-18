@@ -1,4 +1,5 @@
 <?php
+
 class Requests{
 private $id_user;
 private $text;
@@ -13,7 +14,9 @@ public function getId_user()
 {
 return $this->id_user;
 }
+public static function makeArticleRequest(){
 
+}
 /**
  * Set the value of id_user
  *
