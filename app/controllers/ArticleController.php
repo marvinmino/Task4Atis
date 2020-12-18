@@ -15,7 +15,9 @@ class ArticleController
     }
 
     public function home(){
-        return view('articles');
+        $articles=App::get('articleQuery')->selectAll('article');
+       
+        return view('articles',compact('articles'));
     }
 
     
@@ -38,9 +40,10 @@ class ArticleController
                 $this->articleRequest->reqData('date'),
                 $this->articleRequest->reqData('category'),
             );
+            return redirect('post/'.$slug);
         }
         else
-        return redirect('test');
+        return redirect('create');
     }
     public function sort()
     {
@@ -75,10 +78,10 @@ class ArticleController
             
             App::get('ArticleQuery')->updateArticle(
                 $this->ArticleRequest->reqData('id'),
-                $this->ArticleRequest->reqData('ArticleName'),
-                $this->ArticleRequest->reqData('ArticleDescription'),
-                $this->ArticleRequest->reqData('ArticlePriority'),
-                $this->ArticleRequest->reqData('ArticleDeadline')
+                $this->ArticleRequest->reqData('articleName'),
+                $this->ArticleRequest->reqData('articleDescription'),
+                $this->ArticleRequest->reqData('articlePriority'),
+                $this->ArticleRequest->reqData('articleDeadline')
             );
         }
         else
@@ -86,7 +89,7 @@ class ArticleController
     }
     public function delete(){
 
-        App::get('ArticleQuery')->delete('Articles','id',$this->ArticleRequest->reqData('deleteArticle'));
+        App::get('ArticleQuery')->delete('article','id',$this->ArticleRequest->reqData('deleteArticle'));
         return redirect('home');
     }
 }

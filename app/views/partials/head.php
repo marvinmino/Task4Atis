@@ -34,7 +34,7 @@
     <!-- Custom styles for this template -->
     <link href="../public/css/style.css" rel="stylesheet">
   </head>
-  <body class="text-center" style=' background-color:		rgb(128,128,128);'>
+  <body class="text-center" >
   <!-- <script src="../public/js/main.js"></script> -->
     <div class=" d-flex w-100 h-100 p-3 mx-auto flex-column">
   <header class="masthead mb-auto">
@@ -43,8 +43,9 @@
       <nav class="nav nav-masthead justify-content-center">
         <a class="nav-link active" href="../home">Home</a>
         <?php
+        session_start();
            if ($_SESSION['user_role']=='admin') {
-            echo '<a class="nav-link" href="category">Categories</a>';
+            echo '<a class="nav-link" href="../category">Categories</a>';
            }
     ?>
         <a class="nav-link" href="../articles">Articles</a>

@@ -24,9 +24,14 @@
                         <br>
                         <?php 
                         if($user->role=='admin')
-                        echo "<a href='dashboard' >Go to admin dashboard</a>";
+                       {
+                           echo "<a href='dashboard' >Go to admin dashboard</a><br>";
+                           echo "<a href='create' >Create Article</a>";
+                       }
                         else if($user->role=='reader')
                         echo "<a href='makewriter' >Request to be a writer</a>";
+                        else if( $user->role=='writer')
+                        echo "<a href='create' >Create Article</a>";
                         ?>
                      <div class="row">
                           <div class="col-sm-12 text-center">

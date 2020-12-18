@@ -11,8 +11,11 @@ class ArticleRepository extends RepositoryBuilder{
         $this->pdo = $pdo;
     }
     public function insertArticle($title,$slug,$description,$content,$userId,$date,$category)
-    {
-        // die(var_dump($_SESSION['path']));
+    {    
+        if (!empty($this->selectAllOneCon('article', 'slug', $slug))) {
+            $_SESSION['error']="Article with the same title already exists";
+        }
+        else
             $this->insert('article', [
                 'title'       => $title,
                 'slug'        => $slug,
@@ -24,7 +27,7 @@ class ArticleRepository extends RepositoryBuilder{
                 'thumbnail'   => $_SESSION['thumbnail'],
                 'image'       => $_SESSION["path"],
                 ]);
-        return redirect('test');
+        
         
     }
     public function sort($args)

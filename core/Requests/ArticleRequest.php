@@ -19,6 +19,10 @@ class ArticleRequest extends Request
             session_start();
             $_SESSION['error'] = " description not set";
         }
+        if (strlen($this->reqData('description')) < 60) {
+            session_start();
+            $_SESSION['error'] = "Description is too short";
+        }
         if (empty($this->reqData('content'))) {
             session_start();
             $_SESSION['error'] = "Content not set";
@@ -53,7 +57,7 @@ class ArticleRequest extends Request
                 $fileType = pathinfo($target_file,PATHINFO_EXTENSION); 
                 if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
                     $_SESSION['path'] ="../".$target_dir.basename($_FILES["fileToUpload"]["name"]);
-                    $_SESSION['thumbnail']="app/content/article/thumbnails".basename($_FILES["fileToUpload"]["name"]);
+                    $_SESSION['thumbnail']="app/content/article/thumbnails/".basename($_FILES["fileToUpload"]["name"]);
                     Image::addWatermark($target_file,$fileType);
                 }
             }

@@ -37,9 +37,11 @@
                 <td><p class="show<?php echo $category->id?>" id="<?php echo $category->id?>" style="align:center"><?php echo $category->name ?></p>  
                 <div class="edit edit<?php echo $category->id?>"><input type="text" class="in<?php echo $category->id?>" id="<?php echo $category->id?>"value="<?php echo $category->name?>">
                     <a href="#" class="go" id="<?php echo $category->id?>" style="font-size:15px;color:red;">-></a>
-            </div>
+                </div>
                 </td>
-                <td><a id='<?php echo $category->id?>'  href="#" style="font-size:15px;color:red;" class="cat">Edit</a></td>
+                <td>
+                <a id='<?php echo $category->id?>'  href="#" style="font-size:15px;color:blue;" class="cat">Edit </a>| 
+                <a id='<?php echo $category->id?>' class="delete" href="#" style="font-size:15px;color:red;" >Delete</a></td>
             </tr>
         <?php endforeach; ?>
             

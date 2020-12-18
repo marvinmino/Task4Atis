@@ -26,7 +26,7 @@ class UserRequest extends Request
     public function resetAuth()
     {
       if ($this->reqData('password1')) {
-        if (strlen($_POST['password1']) < 6) {
+        if (strlen($this->reqData('password1')) < 6) {
             session_start();
             $_SESSION['error'] = "Password is too short";
             header("Location: reset?token={$_SESSION['token']}");

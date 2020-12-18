@@ -34,6 +34,7 @@ class CategoryController
     public function delete()
     { 
         $id=$this->categoryRequest->reqData('delete');
+
         App::get('categoryQuery')->delete('category','id',$id);
     }
     public function edit()
