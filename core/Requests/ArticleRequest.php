@@ -9,7 +9,7 @@ class ArticleRequest extends Request
     }
 
     public function articleAuth()
-    {
+    {   
         session_start();
         if (empty($this->reqData('title'))) {
             session_start();
@@ -23,14 +23,16 @@ class ArticleRequest extends Request
             session_start();
             $_SESSION['error'] = "Description is too short";
         }
-        if (empty($this->reqData('content'))) {
-            session_start();
-            $_SESSION['error'] = "Content not set";
-        }
         if (empty($this->reqData('date'))) {
             session_start();
             $_SESSION['error'] = "Date not set";
         }
+        if (empty($this->reqData('content'))) {
+            session_start();
+            
+            $_SESSION['error'] = "Content not set";
+        }
+        
         $target_dir = "app/content/article/images/";
         if (isset($_FILES['fileToUpload'])) {
             // die(var_dump($_FILES));

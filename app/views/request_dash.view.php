@@ -14,12 +14,13 @@
                 </thead>
                 <tbody id='tb'>
                     <?php foreach ($userRequests as $request) : ?>
-                        
+                        <?php if ($request->allow==NULL) : ?>
                         <tr scope='row' class="user">           
                                 <td><?php echo "{$request->email} has made a ".ucfirst($request->type); ?></td>
             
                                 <td><a id='<?php echo $request->id?>'  href="request?reqId=<?php echo $request->id?>"><p style="font-size:30px;color:red;">&#9998;</p></a></td>
                         </tr>
+                        <?php endif; ?>
                     <?php endforeach; ?>
                 </tbody>
 

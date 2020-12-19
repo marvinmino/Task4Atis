@@ -48,10 +48,17 @@ class UserRepository extends RepositoryBuilder
             //         }
             //     }
             // }
-            $_SESSION['email'] = $email;
-            $_SESSION['user_role']=$user->role;
-            $_SESSION["uid"]=$user->id;
-            return redirect('home');
+            if ($user->verified==1) {
+                $_SESSION['email'] = $email;
+                $_SESSION['user_role']=$user->role;
+                $_SESSION["uid"]=$user->id;
+                return redirect('home');
+            }
+            else 
+            {
+                $_SESSION['emailver'] = $email;
+                return redirect('sendmailverify');
+            }
         }
     }
 

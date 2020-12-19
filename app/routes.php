@@ -2,6 +2,7 @@
 
 $router->get('home', 'BlogController@home@@');
 $router->get('logout', 'UsersController@logout');
+$router->get('sendmail', 'UsersController@sendMail@@');
 $router->get('', 'BlogController@home@@');
 $router->get('register', 'BlogController@register@loggedIn@');
 $router->post('register', 'UsersController@store@loggedIn@');
@@ -21,13 +22,17 @@ $router->get('profile','UsersController@profile@notLoggedIn@');
 $router->get('makewriter','RequestController@admin@notLoggedIn@');
 $router->get('reqDash','RequestController@getRequests@notLoggedIn@isAdmin');
 $router->get('request','RequestController@reqLoad@notLoggedIn@isAdmin');
+$router->get('postrequest','RequestController@post@notLoggedIn@isAdmin');
 $router->get('requestHandler','RequestController@requestHandler@notLoggedIn@isAdmin');
 $router->get('acceptwriter','UsersController@acceptWriter@notLoggedIn@isAdmin');
+$router->get('acceptpost','ArticleController@acceptArticle@notLoggedIn@isAdmin');
+
 $router->get('create','BlogController@test@notLoggedIn@isWriter');
 $router->get("post",'BlogController@post@@');
+$router->get("sendmailverify",'BlogController@sendmailverify@@');
 $router->get("category",'CategoryController@show@notLoggedIn@isAdmin');
 $router->post("category",'CategoryController@save@notLoggedIn@isAdmin');
 $router->post("editCategory",'CategoryController@edit@notLoggedIn@isAdmin');
 $router->post("deleteCategory",'CategoryController@delete@notLoggedIn@isAdmin');
-// $router->get("post/{name}",'BlogController@post@@');
+
 $router->post('articlesave','ArticleController@save@notLoggedIn@isWriter');

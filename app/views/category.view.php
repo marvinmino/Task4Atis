@@ -49,36 +49,7 @@
         <p class='dummy'></p>
     </div>
 </div>
-<div class="container p-3 my-3  text-white">
 
-</div>
-<div class="container p-3 my-3  text-white">
-
-</div>
-<div class="container p-3 my-3  text-white">
-
-</div>
-<div class="container p-3 my-3  text-white">
-<div class="container p-3 my-3  text-white">
-
-</div>
-<div class="container p-3 my-3  text-white">
-
-</div><div class="container p-3 my-3  text-white">
-
-</div><div class="container p-3 my-3  text-white">
-
-</div><div class="container p-3 my-3  text-white">
-<div class="container p-3 my-3  text-white">
-
-</div><div class="container p-3 my-3  text-white">
-
-</div><div class="container p-3 my-3  text-white">
-
-</div>
-
-</div>
-</div>
 
 <script src="public/js/category.js" type="text/javascript"></script>
 <?php require 'partials/footer.php'; ?>

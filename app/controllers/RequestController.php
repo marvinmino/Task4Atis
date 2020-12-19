@@ -20,6 +20,13 @@ class RequestController
         App::get("requestQuery")->addRequest($_SESSION['email'], 'writer request', "User {$_SESSION['email']} wants to be a writer");
         return redirect('profile');
     }
+    public function post()
+    {
+        session_start();
+        if(empty(App::get("requestQuery")->selectAllOneCon('requests','text',$_SESSION['slug'])))
+        App::get("requestQuery")->addRequest($_SESSION['email'], 'post request', $_SESSION['slug']);
+        return view('messageReq');
+    }
     public function getRequests()
     {
         session_start();
@@ -36,7 +43,8 @@ class RequestController
         } elseif ($request->type=='comment request') {
             return view('creq', compact('request'));
         } elseif ($request->type=='post request') {
-            return view('preq', compact('request'));
+            $article=App::get('requestQuery')->selectAllOneCon('article','slug',$request->text)[0];
+            require 'app/views/preq.view.php';
         }
     }
     public function requestHandler()
@@ -44,18 +52,18 @@ class RequestController
         $request=App::get("requestQuery")->selectAllOneCon('requests', 'id', $this->requestRequest->reqData('reqId'))[0];
         if ($this->requestRequest->reqData('answer')=="no") {
             App::get("requestQuery")->update('requests','allow', 0,'id',$request->id);
-            return redirect("mail?id={$request->id_user}&answer=no");
+            return redirect("reqDash");
         } else {
             App::get("requestQuery")->update('requests','allow', 1,'id',$request->id);
             
             if ($request->type=='writer request') {
                  return redirect("acceptwriter?id={$request->id_user}");
+            } elseif ($request->type=='post request') {
+                return redirect("acceptpost?slug={$request->text}");
             } elseif ($request->type=='comment request') {
-                return redirect("acceptpost?id={$request->id_article}");
-            } elseif ($request->type=='acceptcomment') {
                 return redirect("acceptcomment?id={$request->id_comment}");
             }
-            return redirect("mail?id={$request->id_user}");
+            return redirect("home");
         }
     }
 }

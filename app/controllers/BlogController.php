@@ -56,10 +56,14 @@ class BlogController
         session_start();
         $article=App::get('articleQuery')->selectAllOneCon('article','slug',$this->request->reqData('slug'))[0];
         $user=App::get('articleQuery')->selectAllOneCon('users','email',$_SESSION['email'])[0];
+        $comments=App::get('commentQuery')->selectAllOneCon('comments','accepted',1);
         if($article->status=="okay"||$_SESSION['user_role']=="admin"||$user->id==$article->userId)
-        return view('post',compact('article'));
+        require 'app/views/post.view.php';
         else
         return redirect('../home');
+    }
+    public function sendmailVerify(){
+        return view('verified');
     }
 
 

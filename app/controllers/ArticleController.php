@@ -26,10 +26,9 @@ class ArticleController
         $user=$_SESSION['uid'];
         
         $this->articleRequest->ArticleAuth();
-        //  die(var_dump($this->articleRequest->reqData('title')));
         if (empty($_SESSION['error'])) {
             $slug=Slug::slugify($this->articleRequest->reqData('title'));
-            // die(var_dump($slug));
+            $_SESSION['slug']=$slug;
             if(App::get('articleQuery')->insertArticle(
                 $this->articleRequest->reqData('title'),
                 $slug,
@@ -39,11 +38,11 @@ class ArticleController
                 $this->articleRequest->reqData('date'),
                 $this->articleRequest->reqData('category'),
             ))
-            {
-                ///shto article id dhe te requestet coje userin te artikulli/
-                App::get('requestQuery')->addRequest($_SESSION['email'],'post request',$slug);
+            {   
+                ///shto article id dhe te requestet coje userin te artikulli me an t views preq
+                return redirect('postrequest');
             }
-            return redirect('post/'.$slug);
+            return redirect('myarticles');
         }
         else
         return redirect('create');
@@ -58,21 +57,10 @@ class ArticleController
 
     public function check()
     {
-        // die(var_dump($this->ArticleRequest->reqData('check')));
         App::get('ArticleQuery')->update('Articles', 'done', $this->ArticleRequest->reqData('check'), 'id', $this->ArticleRequest->reqData('idcheck'));
     }
-    public function edit(){
-        session_start();
-        if(isset($_SESSION['email']))
-        {   
-            $Article = App::get('ArticleQuery')->selectAllOneCon('Articles','id',$this->ArticleRequest->reqData('id'));
-            return view('edit',compact('Article'));
-        }
-        else 
-        return redirect('login');
+
     
-        return view('edit',compact($this->ArticleRequest->reqData('id')));
-    }
     public function editData(){
         session_start();
         
@@ -99,5 +87,10 @@ class ArticleController
         session_start();
         $articles=App::get("articleQuery")->merge('users','article','id','userId','email',$_SESSION['email']);
         return view('myarticles',compact('articles'));
+    }
+    public function acceptArticle(){
+
+        $article=App::get("userQuery")->update('article','status','okay','slug',$this->articleRequest->reqData('slug'));
+        return redirect('reqDash');
     }
 }

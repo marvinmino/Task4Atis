@@ -24,7 +24,15 @@ class UsersController
         $this->userRequest->verifyMail(App::get('key'), App::get('userQuery')->selectAllOneCon('users','email',$this->userRequest->reqData('email'))[0]);
         return redirect('login');
         }    
-     
+        public function sendMail()
+        { 
+            session_start();
+            $token = openssl_random_pseudo_bytes(16);
+            $token = bin2hex($token);
+            App::get('userQuery')->update('users','token',$token,'email',$_SESSION['emailver']);
+            $this->userRequest->verifyMail(App::get('key'), App::get('userQuery')->selectAllOneCon('users','email',$_SESSION['emailver'])[0]);
+            return redirect('login');
+            }
     public function login()
     {   
         session_start();
@@ -92,6 +100,6 @@ class UsersController
     }
     public function acceptWriter(){
         $user=App::get("userQuery")->update('users','role','writer','id',$this->userRequest->reqData('id'));
-        return redirect('dashboard');
+        return redirect('requests');
     }
 }
