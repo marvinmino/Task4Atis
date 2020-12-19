@@ -19,7 +19,7 @@ private static $installed = array (
     'aliases' => 
     array (
     ),
-    'reference' => 'e3bb1c228863b0869b681a07c478bfbe3ddd8ad2',
+    'reference' => '152e7aa2c54c678653ffce75b4b933ae29d4ade7',
     'name' => '__root__',
   ),
   'versions' => 
@@ -31,7 +31,7 @@ private static $installed = array (
       'aliases' => 
       array (
       ),
-      'reference' => 'e3bb1c228863b0869b681a07c478bfbe3ddd8ad2',
+      'reference' => '152e7aa2c54c678653ffce75b4b933ae29d4ade7',
     ),
     'sendgrid/php-http-client' => 
     array (

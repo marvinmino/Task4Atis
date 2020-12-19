@@ -39,7 +39,7 @@ class ArticleController
                 $this->articleRequest->reqData('category'),
             ))
             {   
-                ///shto article id dhe te requestet coje userin te artikulli me an t views preq
+
                 return redirect('postrequest');
             }
             return redirect('myarticles');
@@ -60,24 +60,6 @@ class ArticleController
         App::get('ArticleQuery')->update('Articles', 'done', $this->ArticleRequest->reqData('check'), 'id', $this->ArticleRequest->reqData('idcheck'));
     }
 
-    
-    public function editData(){
-        session_start();
-        
-        $this->ArticleRequest->ArticleAuth();
-        if (empty($_SESSION['error'])) {
-            
-            App::get('ArticleQuery')->updateArticle(
-                $this->ArticleRequest->reqData('id'),
-                $this->ArticleRequest->reqData('articleName'),
-                $this->ArticleRequest->reqData('articleDescription'),
-                $this->ArticleRequest->reqData('articlePriority'),
-                $this->ArticleRequest->reqData('articleDeadline')
-            );
-        }
-        else
-        return redirect('edit?id='.$this->ArticleRequest->reqData('id'));
-    }
     public function delete(){
 
         App::get('ArticleQuery')->delete('article','id',$this->ArticleRequest->reqData('deleteArticle'));

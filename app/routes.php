@@ -34,5 +34,5 @@ $router->get("category",'CategoryController@show@notLoggedIn@isAdmin');
 $router->post("category",'CategoryController@save@notLoggedIn@isAdmin');
 $router->post("editCategory",'CategoryController@edit@notLoggedIn@isAdmin');
 $router->post("deleteCategory",'CategoryController@delete@notLoggedIn@isAdmin');
-
+$router->post("comment",'CommentController@save@notLoggedIn@isAdmin');
 $router->post('articlesave','ArticleController@save@notLoggedIn@isWriter');
