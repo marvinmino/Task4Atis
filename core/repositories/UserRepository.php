@@ -6,11 +6,7 @@ use PDO;
 
 class UserRepository extends RepositoryBuilder
 {
-    protected $pdo;
-    public function __construct($pdo)
-    {
-        $this->pdo = $pdo;
-    }
+
     public function register($email, $password)
     {
         session_start();

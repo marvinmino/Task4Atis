@@ -41,5 +41,5 @@
 
 </div>
 
-<script src="public/js/request_dash.js" type="text/javascript"></script>
+
 <?php require 'partials/footer.php'; ?>

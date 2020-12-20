@@ -1,6 +1,6 @@
  <?php
 
-$router->get('home', 'BlogController@home@@');
+$router->get('articles', 'BlogController@home@@');
 $router->get('logout', 'UsersController@logout');
 $router->get('sendmail', 'UsersController@sendMail@@');
 $router->get('', 'BlogController@home@@');
@@ -10,7 +10,7 @@ $router->get('login', 'BlogController@login@loggedIn@');
 $router->post('login', 'UsersController@login@loggedIn@');
 $router->get('logout', 'BlogController@logout@@');
 $router->get('verify','UsersController@verify@@');
-$router->get('articles','ArticleController@home@@');
+$router->get('home','ArticleController@home@@');
 $router->get('myarticles','ArticleController@myArticles@notLoggedIn@isWriter');
 $router->get('forgot','BlogController@forgotPassword@loggedIn@');
 $router->post('forgot','UsersController@forgot@loggedIn@');
@@ -26,13 +26,14 @@ $router->get('postrequest','RequestController@post@notLoggedIn@isAdmin');
 $router->get('requestHandler','RequestController@requestHandler@notLoggedIn@isAdmin');
 $router->get('acceptwriter','UsersController@acceptWriter@notLoggedIn@isAdmin');
 $router->get('acceptpost','ArticleController@acceptArticle@notLoggedIn@isAdmin');
-
+$router->get('acceptcomment','CommentController@acceptComment@notLoggedIn@isAdmin');
 $router->get('create','BlogController@test@notLoggedIn@isWriter');
 $router->get("post",'BlogController@post@@');
 $router->get("sendmailverify",'BlogController@sendmailverify@@');
 $router->get("category",'CategoryController@show@notLoggedIn@isAdmin');
 $router->post("category",'CategoryController@save@notLoggedIn@isAdmin');
 $router->post("editCategory",'CategoryController@edit@notLoggedIn@isAdmin');
-$router->post("deleteCategory",'CategoryController@delete@notLoggedIn@isAdmin');
-$router->post("comment",'CommentController@save@notLoggedIn@isAdmin');
+$router->post("editComment",'CommentController@edit@notLoggedIn@');
+$router->post("deleteComment",'CommentController@delete@notLoggedIn@');
+$router->post("comment",'CommentController@save@notLoggedIn@');
 $router->post('articlesave','ArticleController@save@notLoggedIn@isWriter');

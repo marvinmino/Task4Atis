@@ -23,6 +23,8 @@ if (isset($_SESSION['error'])) {
 <input style="float:left"type="submit" class="btn btn-danger btn-lg btn-block" value="Create Article" name='frm'>
 <input type="text" class="form-control" placeholder="Title" name="title">
 <input type="text" class="form-control" placeholder="Description" name="description">
+<label for="fileToUpload" style="float:left">Article Tags(<i>Divide the tags by using a forward slash "/"</i> )</label>
+<input type="text" class="form-control" placeholder="Tags" name="tags">
 <label for="fileToUpload" style="float:left">Article Main Image:</label>
 <input class="form-control" type="file" name="fileToUpload" id="fileToUpload">
 <label for="category" style="float:left">Category Select:</label>

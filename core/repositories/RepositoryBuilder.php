@@ -51,11 +51,11 @@ class RepositoryBuilder
         $statement->execute();
         return $statement->fetchAll(PDO::FETCH_CLASS);
     }
-    public function selectSortAllOneCon($table, $conData, $con,$sort)
+    public function selectSortAllOneCon($table, $conData, $con,$sort,$order)
     {
-        $statement = $this->pdo->prepare("SELECT * FROM " . $table . " where " . $conData . "=:con order by :sort asc");
+        $statement = $this->pdo->prepare("SELECT * FROM " . $table . " where " . $conData . "=:con order by :sort ".$order);
         $statement->bindParam(':con', $con);
-        $statement->bindParam(':con', $sort);
+        $statement->bindParam(':sort', $sort);
         $statement->execute();
         return $statement->fetchAll(PDO::FETCH_CLASS);
     }

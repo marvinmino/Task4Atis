@@ -6,11 +6,6 @@ use PDO;
 
 class RequestRepository extends RepositoryBuilder
 {
-    protected $pdo;
-    public function __construct($pdo)
-    {
-        $this->pdo = $pdo;
-    }
     public function addRequest($email, $type,$text)
      {   
         $user=$this->selectAllOneCon('users','email',$email)[0];

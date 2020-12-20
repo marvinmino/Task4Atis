@@ -18,7 +18,10 @@
                        
 						<h2><?php echo ucfirst($request->type)?></h2>
 				        
-                      <a href='' ><?php echo ucfirst($request->text)?></a>
+					  <a href='' ><?php if($request->type="comment request")
+					 		 echo explode("@@",ucfirst($request->text))[1];
+							  else
+							  echo ucfirst($request->text)?></a>
                      <div class="row">
                           <div class="col-sm-12 text-center">
                             <a href="requestHandler?reqId=<?php echo $request->id?>&answer=yes" class="btn btn-primary btn-md">Accept</a>

@@ -24,7 +24,6 @@ class ArticleController
     {
         session_start();
         $user=$_SESSION['uid'];
-        
         $this->articleRequest->ArticleAuth();
         if (empty($_SESSION['error'])) {
             $slug=Slug::slugify($this->articleRequest->reqData('title'));
@@ -39,7 +38,25 @@ class ArticleController
                 $this->articleRequest->reqData('category'),
             ))
             {   
-
+                $tagsInput=explode("/",$this->articleRequest->reqData('description'));
+                $tags=App::get('articleQuery')->selectAll('tags');
+                $counter=0;
+                if(!empty($tags)){
+                    foreach($tagsinput as $tagin){
+                        foreach($tags as $tag){
+                            if($tagin==$tag->name)
+                            $counter++;
+                        }
+                        if($counter==0){
+                            App::get('articleQuery')->insert('tags',['name'=>$tagin]);
+                            $tagid=App::get('articleQuery')->selectAllOneCon('tags','name',$tagin);
+                            App::get('articleQuery')->insert('articleTags',['articleId'=>$tagin,'tagId'=>$tagid]);
+                        }
+                        else
+                        App::get('articleQuery')->insert('articleTags',['articleId'=>$tagin,'tagId'=>$tagid]);
+                        $counter=0;
+                      }
+                }
                 return redirect('postrequest');
             }
             return redirect('myarticles');

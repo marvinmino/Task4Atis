@@ -6,11 +6,7 @@ use PDO;
 
 class CategoryRepository extends RepositoryBuilder
 {
-    protected $pdo;
-    public function __construct($pdo)
-    {
-        $this->pdo = $pdo;
-    }
+    
     public function insertCategory($name)
     {    
         if (empty($this->selectAllOneCon('category', 'name', $name))) {

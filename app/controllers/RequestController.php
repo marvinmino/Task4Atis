@@ -38,11 +38,10 @@ class RequestController
     {
         session_start();
         $request=App::get("requestQuery")->selectAllOneCon('requests', 'id', $this->requestRequest->reqData('reqId'))[0];
-        if ($request->type=='writer request') {
+        if ($request->type!='post request') {
             return view('wreq', compact('request'));
-        } elseif ($request->type=='comment request') {
-            return view('creq', compact('request'));
-        } elseif ($request->type=='post request') {
+
+        } else{
             $article=App::get('requestQuery')->selectAllOneCon('article','slug',$request->text)[0];
             require 'app/views/preq.view.php';
         }
@@ -55,13 +54,13 @@ class RequestController
             return redirect("reqDash");
         } else {
             App::get("requestQuery")->update('requests','allow', 1,'id',$request->id);
-            
             if ($request->type=='writer request') {
                  return redirect("acceptwriter?id={$request->id_user}");
             } elseif ($request->type=='post request') {
                 return redirect("acceptpost?slug={$request->text}");
             } elseif ($request->type=='comment request') {
-                return redirect("acceptcomment?id={$request->id_comment}");
+                $commentId=explode('@@',$request->text)[0];
+                return redirect("acceptcomment?id={$commentId}");
             }
             return redirect("home");
         }

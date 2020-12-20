@@ -6,11 +6,7 @@ use PDO;
 
 class CommentRepository extends RepositoryBuilder
 {
-    protected $pdo;
-    public function __construct($pdo)
-    {
-        $this->pdo = $pdo;
-    }
+    
     public function addComment($email, $article,$text)
 {   
     // die(var_dump([$email, $article,$text]));

@@ -12,11 +12,10 @@
 <div><?php echo $article->content?></div>
 </div>
 <div class="container p-3 my-3  text-white">
-<form action="../comment" method="post">
-<textarea name="comment" id="" cols="30" rows="10" placeholder="Leave your comment here" name="comment"class="form-control"></textarea>
-<input type="text" name="articleId" hidden value="<?php echo $article->id?>">
-<input type="submit" class="btn btn-dark btn-block" value="Comment">
-</form>
+
+<textarea name="comment" id="" cols="30" rows="10" placeholder="Leave your comment here" name="comment"class="commenttext form-control"></textarea>
+<input type="text" name="articleId" hidden class="articleId" id="<?php echo $article->id?>">
+<a href="#" class="comment btn btn-block btn-primary">Comment</a>
 <div class="container p-3 my-3  text-white" style="background-color:rgba(255, 255, 255, 0.5);border-radius:1.2%;">
 <h6>Comments</h6>
 
@@ -26,13 +25,28 @@
                         }  ?>
 <div style="color:black">
 <?php foreach($comments as $comment):?>
+<div class="hide<?php echo $comment->id?>">
 <h6 style="text-align:left"><b><?php echo explode('@',$comment->user)[0]?></b></h6>
+<?php if($comment->user==$_SESSION['email']):?>
+<div style="text-align:right">
+    <div class="article" id="<?php echo $article->slug?>"></div>
+    <a id='<?php echo $comment->id?>'  href="#" style="font-size:15px;color:blue;" class="cat">Edit </a>| 
+    <a id='<?php echo $comment->id?>' class="delete" href="#" style="font-size:15px;color:red;" >Delete</a></td>
+</div>
+<?php endif?>
 <br>
+
 <div style="text-align:left">
-    <?php echo $comment->text?>
+<p class="show<?php echo $comment->id?>" id="<?php echo $comment->id?>" style="align:center"><?php echo $comment->text ?></p>  
+<div class="edit edit<?php echo $comment->id?>">
+<input type="text" class="in<?php echo $comment->id?>" id="<?php echo $comment->id?>"value="<?php echo $comment->text?>">
+<a href="#" class="go" id="<?php echo $comment->id?>" style="font-size:15px;color:red;">-></a>
+</div>
 </div>
 <hr>
+</div>
 <?php endforeach?>
 </div>
 </div>
+<script src="../public/js/comments.js" type="text/javascript"></script>
 <?php require('partials/footer.php'); ?>

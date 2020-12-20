@@ -10,7 +10,7 @@ class ArticleRepository extends RepositoryBuilder{
     {
         $this->pdo = $pdo;
     }
-    public function insertArticle($title,$slug,$description,$content,$userId,$date,$category)
+    public function insertArticle($title,$slug,$description,$content,$userId,$date,$category,$tags)
     {    
         if (!empty($this->selectAllOneCon('article', 'slug', $slug))) {
             $_SESSION['error']="Article with the same title already exists";
