@@ -10,9 +10,9 @@ class ArticleRepository extends RepositoryBuilder{
     {
         $this->pdo = $pdo;
     }
-    public function insertArticle($title,$slug,$description,$content,$userId,$date,$category,$tags)
+    public function insertArticle($title,$slug,$description,$content,$userId,$date,$category)
     {    
-        if (!empty($this->selectAllOneCon('article', 'slug', $slug))) {
+        if (!empty($this->selectAllOneCon('article', 'slug', $slug))&&$this->selectAllOneCon('article','slug',$slug)[0]->status!="okay") {
             $_SESSION['error']="Article with the same title already exists";
             return false;
         }
@@ -31,20 +31,35 @@ class ArticleRepository extends RepositoryBuilder{
         return true;
         
     }
+    public function insertTags($tagsInput,$slug){
+                $tags=$this->selectAll('tags');
+                $article=$this->selectAllOneCon('article','slug',$slug)[0];
+                $counter=0;
+                if(!empty($tagsInput)&&sizeof($tagsInput<=6)){
+                    foreach($tagsInput as $tagin){
+                        foreach($tags as $tag){
+                            if($tagin==$tag->name&&!empty($tagin))
+                            {
+                                $counter++;
+                                $tagid=$tag->id;
+                            }
+                        }
+                        if($counter==0){
+                            $this->insert('tags',['name'=>str_replace(array(':', '-', '/', '*'), '', $tagin)]);
+                            $tagid=$this->selectAllOneCon('tags','name',str_replace(array(':', '-', '/', '*'), '', $tagin))[0]->$id;
+                        }
+                        $this->insert('articleTags',['articleId'=>$article->id,'tagsId'=>$tagid]);
+                        $counter=0;
+                      }
+                }
+                else
+                $_SESSION['error']="You cant have more than 6 tags";
+    }
     public function sort($args)
     {    $i=0;
         foreach ($args as $id) {
             $i++;
             $this->update('article', 'token', $i, 'id', $id);
         }
-    }
-    public function updateArticle($id,$name,$description,$priority,$deadline)
-    {       
-            $this->update('article','name',$name,'id',$id);
-            $this->update('article','description',$description,'id',$id);
-            $this->update('article','priority',$priority,'id',$id);
-            $this->update('article','deadline',$deadline,'id',$id);
-        return redirect('home');
-    
     }
 }

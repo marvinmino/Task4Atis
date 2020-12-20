@@ -8,8 +8,12 @@
 <br>
 <hr>
 <p><i><?php echo $article->description?></i></p>
+<?php foreach($tags as $tag):?>
+<a href="../tags?tag=<?php echo $tag->name?>" style="color:cyan">#<?php echo $tag->name?> </a>
+    <?php endforeach?>
 <img src="<?php echo $article->image?>" alt="hoho" style="width:100%">
 <div><?php echo $article->content?></div>
+
 </div>
 <div class="container p-3 my-3  text-white">
 

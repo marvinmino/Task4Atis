@@ -17,12 +17,16 @@ class UsersController
     { 
         session_start();
         $this->userRequest->regAuth();
+        if (empty($_SESSION['error'])) {
             App::get('userQuery')->register(
-            $this->userRequest->reqData('email'),
-            $this->userRequest->reqData('password1')
-        );
-        $this->userRequest->verifyMail(App::get('key'), App::get('userQuery')->selectAllOneCon('users','email',$this->userRequest->reqData('email'))[0]);
-        return redirect('login');
+                $this->userRequest->reqData('email'),
+                $this->userRequest->reqData('password1')
+            );
+            $_SESSION['emailver']=$this->userRequest->reqData('email');
+            $this->userRequest->verifyMail(App::get('key'), App::get('userQuery')->selectAllOneCon('users', 'email', $this->userRequest->reqData('email'))[0]);
+            return redirect('sendmailverify');
+        }
+        return redirect('register');
         }    
         public function sendMail()
         { 

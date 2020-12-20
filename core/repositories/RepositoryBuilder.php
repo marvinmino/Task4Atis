@@ -97,6 +97,21 @@ class RepositoryBuilder
         $statement->execute();
         return $statement->fetchAll(PDO::FETCH_CLASS);
     }
+    public function manytomany($table1,$table2,$table3,$con,$conval){
+        $statement = $this->pdo->prepare("SELECT * FROM {$table1} JOIN {$table2} on {$table1}.id={$table2}.{$table1}Id JOIN {$table3} on {$table3}.id={$table2}.{$table3}Id where {$con}=:conval");
+        
+        $statement->bindParam(':conval', $conval);
+        $statement->execute();
+        return $statement->fetchAll(PDO::FETCH_CLASS);
+    }
+    public function manytomanytwo($table1,$table2,$table3,$con,$conval,$con2,$conval2){
+        $statement = $this->pdo->prepare("SELECT * FROM {$table1} JOIN {$table2} on {$table1}.id={$table2}.{$table1}Id JOIN {$table3} on {$table3}.id={$table2}.{$table3}Id where {$con}=:conval and {$con2}=:conval2");
+        
+        $statement->bindParam(':conval', $conval);
+        $statement->bindParam(':conval2', $conval2);
+        $statement->execute();
+        return $statement->fetchAll(PDO::FETCH_CLASS);
+    }
     public function update($table, $element, $elementValue, $condition ,$conditionValue)
     {
         $sql = "update {$table} set {$element}=:elementValue where {$condition}=:conditionValue";

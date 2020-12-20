@@ -26,6 +26,7 @@
         </div>
       </div>
       <?php foreach($articles as $article):?>
+
       <div class="carousel-item">
         <a href="post/<?php echo $article->slug?>"><img class="bd-placeholder-img" width="100%" height="600px" src=<?php echo $article->thumbnail?> preserveAspectRatio="xMidYMid slice" focusable="false" role="img"><rect width="100%" height="100%" fill="#777"/></img></a>
         <div class="container">
@@ -53,6 +54,7 @@
 
       <div class="row">
       <?php foreach($articles as $article):?>
+      <?php if(strtotime($article->date)<=strtotime(date('y-m-d'))):?>
         <div class="col-md-4">
           <div class="card mb-4 shadow-sm">
             <img class="bd-placeholder-img card-img-top" width="100%" height="225" src="<?php echo $article->thumbnail?>" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Thumbnail"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/></img>
@@ -68,6 +70,7 @@
             </div>
           </div>
         </div>
+        <?php endif?>
         <?php endforeach?>
       </div>  
     </div>

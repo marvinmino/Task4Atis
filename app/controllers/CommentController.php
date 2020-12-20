@@ -25,7 +25,7 @@ class CommentController
             );
             $comment=App::get("commentQuery")->selectAllOneCon('comments','article',$this->commentRequest->reqData('articleId'));
             $comment=$comment[sizeof($comment)-1];
-            $text=$comment->id."@@User ".$_SESSION['email']." commented '".$this->commentRequest->reqData('comment')."' on <a style='color:blue;' href='post/".App::get('commentQuery')->selectAllOneCon('article','id',$this->commentRequest->reqData('articleId'))[0]->slug."'>article</a>";
+            $text=$comment->id."@@User ".$_SESSION['email']." commented '".$this->commentRequest->reqData('comment')."' on <a style='color:blue;' href='post/".App::get('commentQuery')->selectAllTwoCon('article','id',$this->commentRequest->reqData('articleId'),'status','okay')[0]->slug."'>article</a>";
             App::get("requestQuery")->insert('requests', [
                 'id_user'   =>     $_SESSION['uid'],
                 'type'      =>     'comment request',

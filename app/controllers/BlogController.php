@@ -54,10 +54,13 @@ class BlogController
     }
     public function post(){
         session_start();
-        $article=App::get('articleQuery')->selectAllOneCon('article','slug',$this->request->reqData('slug'))[0];
+        $article=App::get('articleQuery')->selectAllTwoCon('article','slug',$this->request->reqData('slug'),'status','okay')[0];
         $user=App::get('articleQuery')->selectAllOneCon('users','email',$_SESSION['email'])[0];
+        if($user->role!='reader')
+        $article=App::get('articleQuery')->selectAllOneCon('article','slug',$this->request->reqData('slug'))[0];
+        $tags=App::get('articleQuery')->manytomanytwo('article','articleTags','tags','slug',$this->request->reqData('slug'),'status','okay');
         $comments=App::get('commentQuery')->selectAllTwoCon('comments','accepted',1,'article',$article->id);
-        if($article->status=="okay"||$_SESSION['user_role']=="admin"||$user->id==$article->userId)
+        if(($article->status=="okay"||$_SESSION['user_role']=="admin"||$user->id==$article->userId)&&!empty($article))
         require 'app/views/post.view.php';
         else
         return redirect('../home');

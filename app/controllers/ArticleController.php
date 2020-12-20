@@ -14,7 +14,7 @@ class ArticleController
     }
 
     public function home(){
-        $articles=App::get('articleQuery')->selectAll('article');
+        $articles=App::get('articleQuery')->selectAllOneCon('article','status','okay');
        
         return view('articles',compact('articles'));
     }
@@ -38,31 +38,22 @@ class ArticleController
                 $this->articleRequest->reqData('category'),
             ))
             {   
-                $tagsInput=explode("/",$this->articleRequest->reqData('description'));
-                $tags=App::get('articleQuery')->selectAll('tags');
-                $counter=0;
-                if(!empty($tags)){
-                    foreach($tagsinput as $tagin){
-                        foreach($tags as $tag){
-                            if($tagin==$tag->name)
-                            $counter++;
-                        }
-                        if($counter==0){
-                            App::get('articleQuery')->insert('tags',['name'=>$tagin]);
-                            $tagid=App::get('articleQuery')->selectAllOneCon('tags','name',$tagin);
-                            App::get('articleQuery')->insert('articleTags',['articleId'=>$tagin,'tagId'=>$tagid]);
-                        }
-                        else
-                        App::get('articleQuery')->insert('articleTags',['articleId'=>$tagin,'tagId'=>$tagid]);
-                        $counter=0;
-                      }
-                }
+                $tagsInput=explode("/",$this->articleRequest->reqData('tags'));
+                App::get('articleQuery')->insertTags($tagsInput,$slug);
                 return redirect('postrequest');
             }
             return redirect('myarticles');
         }
         else
         return redirect('create');
+    }
+    public function tag(){
+        $articles=App::get('articleQuery')->manytomany('article','articleTags','tags','name',$this->articleRequest->reqData('tag'));
+        return view('myarticles',compact('articles'));
+    }
+    public function category(){
+        $articles=App::get('articleQuery')->manytomany('article','articleTags','tags','category',$this->articleRequest->reqData('category'));
+        return view('myarticles',compact('articles'));
     }
     public function sort()
     {

@@ -29,6 +29,7 @@ $router->get('acceptpost','ArticleController@acceptArticle@notLoggedIn@isAdmin')
 $router->get('acceptcomment','CommentController@acceptComment@notLoggedIn@isAdmin');
 $router->get('create','BlogController@test@notLoggedIn@isWriter');
 $router->get("post",'BlogController@post@@');
+$router->get("tags",'ArticleController@tag@@');
 $router->get("sendmailverify",'BlogController@sendmailverify@@');
 $router->get("category",'CategoryController@show@notLoggedIn@isAdmin');
 $router->post("category",'CategoryController@save@notLoggedIn@isAdmin');
