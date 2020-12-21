@@ -81,8 +81,7 @@ class UserRequest extends Request
         $email->setFrom("gamer.fear69@gmail.com", "Gamer Fear");
         $email->setSubject("Please confirm your account at gamerfear.com");
         $email->addTo("$user->email", "user");
-        $email->addContent(
-            "text/html",
+        $email->addContent("text/html",
             '<!doctype html>
             <html>
               <head>
