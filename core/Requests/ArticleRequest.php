@@ -36,7 +36,9 @@ class ArticleRequest extends Request
         $target_dir = "app/content/article/images/";
         if (isset($_FILES['fileToUpload'])) {
             // die(var_dump($_FILES));
+            $newname=str_replace(array("/",' ','-'),"",$_FILES["fileToUpload"]["name"]);
             $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
+            $target_new_file=$target_dir . str_replace(array("/",' ','-'),"",basename($_FILES["fileToUpload"]["name"]));
             $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
 
 
@@ -47,9 +49,7 @@ class ArticleRequest extends Request
                     $_SESSION['error'] = "{$_FILES["fileToUpload"]["name"]} is not an image." ;
                 }
             }
-            if ($_FILES["fileToUpload"]["size"] > 5000000) {
-                $_SESSION['error'] = "File is too big" ;
-              }
+      
             // Allow certain file formats
             if ($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" && $imageFileType != "gif") {
                 $_SESSION['error'] ="Sorry, {$_FILES["fileToUpload"]["name"]} is not a JPG, JPEG, PNG & GIF file";
@@ -57,12 +57,12 @@ class ArticleRequest extends Request
 
             // Check if $_SESSION['error'] is set to 0 by an error
             if (empty($_SESSION['error'])) {
-                 Image::compressImage($_FILES["fileToUpload"]["tmp_name"],"app/content/article/thumbnails/{$_FILES['fileToUpload']['name']}",40);
+                 Image::compressImage($_FILES["fileToUpload"]["tmp_name"],"app/content/article/thumbnails/{$newname}",40);
                 $fileType = pathinfo($target_file,PATHINFO_EXTENSION); 
-                if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
-                    $_SESSION['path'] ="../".$target_dir.basename($_FILES["fileToUpload"]["name"]);
-                    $_SESSION['thumbnail']="app/content/article/thumbnails/".basename($_FILES["fileToUpload"]["name"]);
-                    Image::addWatermark($target_file,$fileType);
+                if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_new_file)) {
+                    $_SESSION['path'] ="../".$target_new_file;
+                    $_SESSION['thumbnail']="app/content/article/thumbnails/".basename($newname);
+                    Image::addWatermark($target_new_file,$fileType);
                 }
             }
         }
