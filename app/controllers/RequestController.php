@@ -50,6 +50,8 @@ class RequestController
     {
         $request=App::get("requestQuery")->selectAllOneCon('requests', 'id', $this->requestRequest->reqData('reqId'))[0];
         if ($this->requestRequest->reqData('answer')=="no") {
+            if ($request->type=='post request')
+            App::get("requestQuery")->update('article','status', 'rejected','slug',$request->text);
             App::get("requestQuery")->update('requests','allow', 0,'id',$request->id);
             return redirect("reqDash");
         } else {

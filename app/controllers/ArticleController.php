@@ -20,7 +20,7 @@ class ArticleController implements controllerInterface
         require 'app/views/articles.view.php';
     }
     public function allarticles(){
-        $articles=App::get('articleQuery')->selectSortAllOneCon('article','0','0','token','asc');
+        $articles=App::get('articleQuery')->selectSortAllOneCon('article','status','okay','token','asc');
         return view('allarticles',compact('articles'));
     }
     

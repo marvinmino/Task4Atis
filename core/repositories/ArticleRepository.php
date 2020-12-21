@@ -5,11 +5,7 @@ namespace App\Core\Repository;
 use PDO;
 
 class ArticleRepository extends RepositoryBuilder{
-    protected $pdo;
-    public function __construct($pdo)
-    {
-        $this->pdo = $pdo;
-    }
+
     public function insertArticle($title,$slug,$description,$content,$userId,$date,$category)
     {    
         if (!empty($this->selectAllOneCon('article', 'slug', $slug))&&$this->selectAllOneCon('article','slug',$slug)[0]->status!="okay") {

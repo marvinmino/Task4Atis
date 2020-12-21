@@ -42,6 +42,9 @@ class BlogController
         session_start();
         session_unset();
         session_destroy();
+        setcookie('email','');
+        setcookie('user_role','');
+        setcookie('user_id','');
         header("location:login");
         exit();
     }

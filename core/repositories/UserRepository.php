@@ -31,19 +31,24 @@ class UserRepository extends RepositoryBuilder
             $_SESSION['error'] = "No email/password combination exists";
             return redirect('login');
         } else {
-            // if (isset($remember)) {
-            //     //COOKIES for username
-            //     setcookie("email", $email, time() + (10 * 365 * 24 * 60 * 60));
-            //     //COOKIES for password
-            //     setcookie("password", $password, time() + (10 * 365 * 24 * 60 * 60));
-            // } else {
-            //     if (isset($_COOKIE["email"])) {
-            //         setcookie("email", "");
-            //         if (isset($_COOKIE["password"])) {
-            //             setcookie("password", "");
-            //         }
-            //     }
-            // }
+            if (isset($remember)) {
+                $passwordssl="passwordssl";
+                $email_encrypt=openssl_encrypt($email,"AES-128-ECB",$passwordssl);
+                $user_role_encrypt=openssl_encrypt($user->role,"AES-128-ECB",$passwordssl);
+                $user_id_encrypt=openssl_encrypt($user->id,"AES-128-ECB",$passwordssl);
+                
+                setcookie("email", $email_encrypt, time() + (10 * 365 * 24 * 60 * 60));
+                setcookie("user_role", $user_role_encrypt, time() + (10 * 365 * 24 * 60 * 60));
+                setcookie("user_id", $user_id_encrypt, time() + (10 * 365 * 24 * 60 * 60));
+            } else {
+                if (isset($_COOKIE["email"])) {
+                    setcookie("email", "");
+                    if (isset($_COOKIE["user_role"]))
+                    setcookie("user_role", "");
+                    if (isset($_COOKIE["id"]))
+                    setcookie("user_id", "");
+                }
+            }
             if ($user->verified==1) {
                 $_SESSION['email'] = $email;
                 $_SESSION['user_role']=$user->role;

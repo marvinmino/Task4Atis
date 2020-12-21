@@ -35,13 +35,6 @@
                         {echo "<a href='create' >Create Article</a><br>";
                             echo "<a href='myarticles' >My articles</a>";}
                         ?>
-                     <div class="row">
-                          <div class="col-sm-12 text-center">
-                            <button class="btn btn-primary btn-md">Edit User</button>
-                            <button class="btn btn-danger btn-md">Delete</button>
-                         </div>
-						<hr class="border">
-					</div>
 					<div class="col-lg-12 text-center pb-2 card-icon">
 
 					</div>

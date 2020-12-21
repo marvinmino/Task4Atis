@@ -24,7 +24,7 @@ $router->get('profile'       , 'UsersController@profile@notLoggedIn@');
 $router->get('makewriter'    , 'RequestController@admin@notLoggedIn@');
 $router->get('reqDash'       , 'RequestController@getRequests@notLoggedIn@isAdmin');
 $router->get('request'       , 'RequestController@reqLoad@notLoggedIn@isAdmin');
-$router->get('postrequest'   , 'RequestController@post@notLoggedIn@isAdmin');
+$router->get('postrequest'   , 'RequestController@post@notLoggedIn@isWriter');
 $router->get('requestHandler', 'RequestController@update@notLoggedIn@isAdmin');
 //article routes
 $router->get('acceptpost'    , 'ArticleController@acceptArticle@notLoggedIn@isAdmin');
@@ -34,7 +34,7 @@ $router->get('featured'      , 'ArticleController@featured@notLoggedIn@isAdmin')
 $router->get("post"          , 'ArticleController@post@@');
 $router->get("tags"          , 'ArticleController@tag@@');
 $router->post("categorysel"  , 'ArticleController@select@@');
-$router->get("allarticles"   , 'ArticleController@allarticles@@');
+$router->get("allarticles"   , 'ArticleController@allarticles@notLoggedIn@isAdmin');
 $router->get('home'          , 'ArticleController@show@@');
 $router->get('myarticles'    , 'ArticleController@myArticles@notLoggedIn@isWriter');
 //category routes

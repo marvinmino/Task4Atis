@@ -109,7 +109,7 @@ class UsersController implements controllerInterface
     }
     public function acceptWriter(){
         $user=App::get("userQuery")->update('users','role','writer','id',$this->userRequest->reqData('id'));
-        return redirect('requests');
+        return redirect('reqDash');
     }
     public function update(){
 
