@@ -53,9 +53,9 @@ class RepositoryBuilder
     }
     public function selectSortAllOneCon($table, $conData, $con,$sort,$order)
     {
-        $statement = $this->pdo->prepare("SELECT * FROM " . $table . " where " . $conData . "=:con order by :sort ".$order);
+        $statement = $this->pdo->prepare("SELECT * FROM  $table  where  $conData = :con order by $sort $order");
+        // die(var_dump($statement));
         $statement->bindParam(':con', $con);
-        $statement->bindParam(':sort', $sort);
         $statement->execute();
         return $statement->fetchAll(PDO::FETCH_CLASS);
     }
@@ -74,7 +74,7 @@ class RepositoryBuilder
      * @param  array  $parameters
      */
     public function insert($table, $parameters)
-    {
+    {   
         $sql = sprintf(
             'insert into %s (%s) values (%s)',
             $table,

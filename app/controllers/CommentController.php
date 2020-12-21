@@ -4,8 +4,8 @@ namespace App\Controllers;
 
 use App\Core\App;
 use CommentRequest;
-class CommentController 
-{
+class CommentController implements controllerInterface
+{   use dd;
     private $commentRequest;
    
     public function __construct($request){
@@ -15,7 +15,6 @@ class CommentController
     public function save()
     {
         session_start();
-
 
         if (!empty($this->commentRequest->reqData('comment'))) {
             App::get('commentQuery')->addComment(
@@ -41,7 +40,7 @@ class CommentController
         return redirect("../post/".App::get('commentQuery')->selectAllOneCon('article', 'id', $this->commentRequest->reqData('articleId'))[0]->slug);
        
     }   
-    public function edit(){
+    public function update(){
         $id=$this->commentRequest->reqData('id');
         $text=$this->commentRequest->reqData('text');
         $slug=$this->commentRequest->reqData('slug');
@@ -64,5 +63,8 @@ class CommentController
 
         App::get("commentQuery")->update('comments','accepted',1,'id',$this->commentRequest->reqData('id'));
         return redirect('reqDash');
+    }
+    public function show(){
+
     }
 }

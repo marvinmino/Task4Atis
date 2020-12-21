@@ -5,8 +5,8 @@ namespace App\Controllers;
 use App\Core\App;
 use CategoryRequest;
 
-class CategoryController 
-{
+class CategoryController implements controllerInterface
+{   use dd;
     private $categoryRequest;
    
     public function __construct($request){
@@ -37,7 +37,7 @@ class CategoryController
 
         App::get('categoryQuery')->delete('category','id',$id);
     }
-    public function edit()
+    public function update()
     {   
         $id=$this->categoryRequest->reqData('id');
         $name=$this->categoryRequest->reqData('name');

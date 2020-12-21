@@ -5,15 +5,15 @@ namespace App\Controllers;
 use App\Core\App;
 use UserRequest;
 
-class UsersController 
-{
+class UsersController implements controllerInterface
+{   use dd;
     private $userRequest;
    
     public function __construct($request){
         $this->userRequest = new UserRequest($request);
     }
     
-    public function store()
+    public function save()
     { 
         session_start();
         $this->userRequest->regAuth();
@@ -28,6 +28,11 @@ class UsersController
         }
         return redirect('register');
         }    
+        public function show()
+    { 
+        $users=App::get('userQuery')->selectAll('users');
+        return view('user_dash',compact('users'));
+    }
         public function sendMail()
         { 
             session_start();
@@ -105,5 +110,11 @@ class UsersController
     public function acceptWriter(){
         $user=App::get("userQuery")->update('users','role','writer','id',$this->userRequest->reqData('id'));
         return redirect('requests');
+    }
+    public function update(){
+
+    }
+    public function delete(){
+        
     }
 }

@@ -5,7 +5,7 @@
 <main role="main">
 
     
-<h2>My articles</h2>
+<h2>Articles</h2>
   <div class="album py-5 bg-dark text-dark">
     <div class="container">
 

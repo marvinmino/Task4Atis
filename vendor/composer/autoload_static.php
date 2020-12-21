@@ -52,13 +52,14 @@ class ComposerStaticInit7c8f0a8154fcdea89657ac618ee8ac86
 
     public static $classMap = array (
         'AdminMiddleware' => __DIR__ . '/../..' . '/core/middleware/AdminMiddleware.php',
-        'App\\Controllers\\AdminController' => __DIR__ . '/../..' . '/app/controllers/AdminController.php',
         'App\\Controllers\\ArticleController' => __DIR__ . '/../..' . '/app/controllers/ArticleController.php',
         'App\\Controllers\\BlogController' => __DIR__ . '/../..' . '/app/controllers/BlogController.php',
         'App\\Controllers\\CategoryController' => __DIR__ . '/../..' . '/app/controllers/CategoryController.php',
         'App\\Controllers\\CommentController' => __DIR__ . '/../..' . '/app/controllers/CommentController.php',
         'App\\Controllers\\RequestController' => __DIR__ . '/../..' . '/app/controllers/RequestController.php',
         'App\\Controllers\\UsersController' => __DIR__ . '/../..' . '/app/controllers/UsersController.php',
+        'App\\Controllers\\controllerInterface' => __DIR__ . '/../..' . '/app/controllers/controllerInterface.php',
+        'App\\Controllers\\dd' => __DIR__ . '/../..' . '/app/controllers/trait.php',
         'App\\Core\\App' => __DIR__ . '/../..' . '/core/App.php',
         'App\\Core\\Repository\\ArticleRepository' => __DIR__ . '/../..' . '/core/repositories/ArticleRepository.php',
         'App\\Core\\Repository\\CategoryRepository' => __DIR__ . '/../..' . '/core/repositories/CategoryRepository.php',

@@ -47,7 +47,9 @@ class ArticleRequest extends Request
                     $_SESSION['error'] = "{$_FILES["fileToUpload"]["name"]} is not an image." ;
                 }
             }
-      
+            if ($_FILES["fileToUpload"]["size"] > 5000000) {
+                $_SESSION['error'] = "File is too big" ;
+              }
             // Allow certain file formats
             if ($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" && $imageFileType != "gif") {
                 $_SESSION['error'] ="Sorry, {$_FILES["fileToUpload"]["name"]} is not a JPG, JPEG, PNG & GIF file";

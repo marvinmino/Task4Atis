@@ -18,8 +18,8 @@ class Image{
         }
          
         // Set the margins for the watermark
-        $marge_right = 5;
-        $marge_bottom = 5;
+        $marge_right = 1;
+        $marge_bottom = 1;
          
         // Get the height/width of the watermark image
         $sx = imagesx($watermarkImg);

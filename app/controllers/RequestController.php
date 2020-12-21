@@ -6,7 +6,7 @@ use App\Core\App;
 use RequestRequest;
 
 class RequestController
-{
+{   use dd;
     private $requestRequest;
    
     public function __construct($request)
@@ -43,10 +43,10 @@ class RequestController
 
         } else{
             $article=App::get('requestQuery')->selectAllOneCon('article','slug',$request->text)[0];
-            require 'app/views/preq.view.php';
+        require 'app/views/preq.view.php';
         }
     }
-    public function requestHandler()
+    public function update()
     {
         $request=App::get("requestQuery")->selectAllOneCon('requests', 'id', $this->requestRequest->reqData('reqId'))[0];
         if ($this->requestRequest->reqData('answer')=="no") {
@@ -64,5 +64,14 @@ class RequestController
             }
             return redirect("home");
         }
+    }
+    public function show(){
+
+    }
+    public function delete(){
+
+    }
+    public function save(){
+
     }
 }

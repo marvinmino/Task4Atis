@@ -7,13 +7,14 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'AdminMiddleware' => $baseDir . '/core/middleware/AdminMiddleware.php',
-    'App\\Controllers\\AdminController' => $baseDir . '/app/controllers/AdminController.php',
     'App\\Controllers\\ArticleController' => $baseDir . '/app/controllers/ArticleController.php',
     'App\\Controllers\\BlogController' => $baseDir . '/app/controllers/BlogController.php',
     'App\\Controllers\\CategoryController' => $baseDir . '/app/controllers/CategoryController.php',
     'App\\Controllers\\CommentController' => $baseDir . '/app/controllers/CommentController.php',
     'App\\Controllers\\RequestController' => $baseDir . '/app/controllers/RequestController.php',
     'App\\Controllers\\UsersController' => $baseDir . '/app/controllers/UsersController.php',
+    'App\\Controllers\\controllerInterface' => $baseDir . '/app/controllers/controllerInterface.php',
+    'App\\Controllers\\dd' => $baseDir . '/app/controllers/trait.php',
     'App\\Core\\App' => $baseDir . '/core/App.php',
     'App\\Core\\Repository\\ArticleRepository' => $baseDir . '/core/repositories/ArticleRepository.php',
     'App\\Core\\Repository\\CategoryRepository' => $baseDir . '/core/repositories/CategoryRepository.php',

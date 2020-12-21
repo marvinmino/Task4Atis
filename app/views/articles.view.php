@@ -8,7 +8,7 @@
   <div id="myCarousel" class="carousel slide" data-ride="carousel"style="height:600px">
     <ol class="carousel-indicators">
       <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-      <?php for($i=1;$i<sizeof($articles)+1;$i++):?>
+      <?php for($i=1;$i<sizeof($articlesFeatured)+1;$i++):?>
         <li data-target="#myCarousel" data-slide-to="<?php echo $i;?>" class="active"></li>
         <?php endfor?>
 
@@ -25,7 +25,7 @@
           </div>
         </div>
       </div>
-      <?php foreach($articles as $article):?>
+      <?php foreach($articlesFeatured as $article):?>
 
       <div class="carousel-item">
         <a href="post/<?php echo $article->slug?>"><img class="bd-placeholder-img" width="100%" height="600px" src=<?php echo $article->thumbnail?> preserveAspectRatio="xMidYMid slice" focusable="false" role="img"><rect width="100%" height="100%" fill="#777"/></img></a>
@@ -50,8 +50,15 @@
 
 
   <div class="album py-5 bg-dark text-dark">
-    <div class="container">
 
+<br>
+    <div class="container">
+    <select name="category" class="form-control" id="select" placeholder="select">
+    <option value="">Category...</option>
+  <?php foreach($categories as $category):?>
+    <option value="<?php echo $category->name?>"><?php echo $category->name?></option>
+    <?php endforeach?>
+</select>
       <div class="row">
       <?php foreach($articles as $article):?>
       <?php if(strtotime($article->date)<=strtotime(date('y-m-d'))):?>
@@ -79,4 +86,5 @@
 </main>
 
 <body>
+<script src="public/js/select.js" type="text/javascript"></script>
 </html>

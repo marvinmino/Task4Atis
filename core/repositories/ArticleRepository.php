@@ -45,9 +45,13 @@ class ArticleRepository extends RepositoryBuilder{
                             }
                         }
                         if($counter==0){
-                            $this->insert('tags',['name'=>str_replace(array(':', '-', '/', '*'), '', $tagin)]);
-                            $tagid=$this->selectAllOneCon('tags','name',str_replace(array(':', '-', '/', '*'), '', $tagin))[0]->$id;
+                            $tagin=str_replace(array(':', '-', '/', '*'), '', $tagin);
+                            $this->insert('tags',['name'=>$tagin]);
+                            $tagid=$this->selectAllOneCon('tags','name',$tagin)[0];
+                            $tagid=$tagid->id;
+                            $this->insert('articleTags',['articleId'=>$article->id,'tagsId'=>$tagid]);
                         }
+                        else
                         $this->insert('articleTags',['articleId'=>$article->id,'tagsId'=>$tagid]);
                         $counter=0;
                       }
