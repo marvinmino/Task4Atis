@@ -86,6 +86,7 @@ class ComposerStaticInit7c8f0a8154fcdea89657ac618ee8ac86
         'EllipticCurve\\Signature' => __DIR__ . '/..' . '/starkbank/ecdsa/src/signature.php',
         'EllipticCurve\\Utils\\File' => __DIR__ . '/..' . '/starkbank/ecdsa/src/utils/file.php',
         'Image' => __DIR__ . '/../..' . '/Image.php',
+        'Mailer' => __DIR__ . '/../..' . '/app/mail/Mailer.php',
         'RequestRequest' => __DIR__ . '/../..' . '/core/Requests/RequestRequest.php',
         'Requests' => __DIR__ . '/../..' . '/app/models/Request.php',
         'SendGrid' => __DIR__ . '/..' . '/sendgrid/sendgrid/lib/SendGrid.php',

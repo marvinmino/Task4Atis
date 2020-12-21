@@ -4,7 +4,7 @@ namespace App\Controllers;
 
 use App\Core\App;
 use UserRequest;
-
+use Mailer;
 class UsersController implements controllerInterface
 {   use dd;
     private $userRequest;
@@ -39,7 +39,7 @@ class UsersController implements controllerInterface
             $token = openssl_random_pseudo_bytes(16);
             $token = bin2hex($token);
             App::get('userQuery')->update('users','token',$token,'email',$_SESSION['emailver']);
-            $this->userRequest->verifyMail(App::get('key'), App::get('userQuery')->selectAllOneCon('users','email',$_SESSION['emailver'])[0]);
+            $this->userRequest->verify(App::get('key'), App::get('userQuery')->selectAllOneCon('users','email',$_SESSION['emailver'])[0]);
             return redirect('login');
             }
     public function login()
@@ -69,7 +69,7 @@ class UsersController implements controllerInterface
        $token = openssl_random_pseudo_bytes(16);
        $token = bin2hex($token);
        App::get('userQuery')->update('users','tokenReset',$token,'email',$this->userRequest->reqData('email'));
-       $this->userRequest->resetPasswordMail(App::get('key'), App::get('userQuery')->findUser('email',$this->userRequest->reqData('email'))[0]);
+       Mailer::reset(App::get('key'), App::get('userQuery')->findUser('email',$this->userRequest->reqData('email'))[0]);
        $_SESSION['message']='We have send a link to your email';
        return redirect('forgot');
     }

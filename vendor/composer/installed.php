@@ -6,7 +6,7 @@
     'aliases' => 
     array (
     ),
-    'reference' => '79cd7131dbcc3459bd72335eb687f7786f9fe88f',
+    'reference' => '78cfa8efc4d76a89039d75aba66c10eea054748d',
     'name' => '__root__',
   ),
   'versions' => 
@@ -18,7 +18,7 @@
       'aliases' => 
       array (
       ),
-      'reference' => '79cd7131dbcc3459bd72335eb687f7786f9fe88f',
+      'reference' => '78cfa8efc4d76a89039d75aba66c10eea054748d',
     ),
     'sendgrid/php-http-client' => 
     array (
